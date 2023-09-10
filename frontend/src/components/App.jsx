@@ -38,6 +38,7 @@ function App() {
   const [isSuccessful, setIsSuccessful] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [isCheckToken, setIsCheckToken] = useState(true)
 //состояние попапов
   const isOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isDeletePopupOpen || isImagePopup || isSuccessful || isError
   const closeAllPopups = useCallback (() => {
@@ -70,10 +71,12 @@ function App() {
         .then(res => {
           setUserEmail(res.email)
           setLoggedIn(true)
+          setIsCheckToken(false)
           navigate('/')
         })
         .catch(err => console.log(`Ошибка авторизации при повторном входе ${err}`))
     } else {
+      setIsCheckToken(false)
       setLoggedIn(false)
     }
   }, [navigate])
@@ -163,7 +166,7 @@ function App() {
   }, [cards, handleSubmit])
  
   const handleLike = useCallback((card) => {
-    const isLike = card.likes.some(element => currentUser._id === element._id)
+    const isLike = card.likes.some(element => currentUser._id === element)
     if (isLike) {
       api.deleteLike(card._id, localStorage.jwt)
         .then(res => {
@@ -228,18 +231,19 @@ function App() {
                 cards={cards}
                 isLoading={isLoadingCards}
                 loggedIn={loggedIn}
+                isCheckToken={isCheckToken}
                 />
               } />
               <Route path='/sign-up' element={
                 <>
                   <Header name='signup' />
-                  <Main name='signup' handleRegister={handleRegister} />
+                  <Main name='signup' isCheckToken = {isCheckToken} handleRegister={handleRegister} />
                 </>
               } />
               <Route path='/sign-in' element={
                 <>
                   <Header name='signin' />
-                  <Main name='signin' handleLogin={handleLogin} />
+                  <Main name='signin' isCheckToken = {isCheckToken} handleLogin={handleLogin} />
                 </>
               } />
               <Route path='*' element={<Navigate to='/' replace />} />
