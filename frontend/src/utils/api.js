@@ -14,14 +14,14 @@ class Api {
     .then(this._serviceMethod)
   }
 
-  getCards(token) {
-    return fetch(`${this._url}/cards`, {
-      headers: {
-        "Authorization" : `Bearer ${token}`
-      }
-    })
-    .then(this._serviceMethod)
-  }
+  // getCards(token) {
+  //   return fetch(`${this._url}/cards`, {
+  //     headers: {
+  //       "Authorization" : `Bearer ${token}`
+  //     }
+  //   })
+  //   .then(this._serviceMethod)
+  // }
 
   setUserInfo(data, token) {
     return fetch(`${this._url}/users/me`, {
