@@ -68,7 +68,7 @@ function App() {
     if (localStorage.jwt) {
       getUserData(localStorage.jwt)
         .then(res => {
-          setUserEmail(res.data.email)
+          setUserEmail(res.email)
           setLoggedIn(true)
           navigate('/')
         })
