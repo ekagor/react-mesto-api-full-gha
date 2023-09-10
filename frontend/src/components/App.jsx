@@ -103,7 +103,7 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       setIsLoadingCards(true)
-      Promise.all([api.getInfo(), api.getCards()])
+      Promise.all([api.getInfo(localStorage.jwt), api.getCards(localStorage.jwt)])
       .then(([userEmail, dataCards])  => {
         setCurrentUser(userEmail)
         setCards(dataCards)
