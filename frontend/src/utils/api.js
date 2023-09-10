@@ -1,6 +1,6 @@
 class Api {
   constructor(options) {
-    this._url = options.baseUrl;    
+    this._url = options.baseUrl;
   }
 
   _serviceMethod(res) {return res.ok ? res.json() : Promise.reject}
@@ -16,7 +16,7 @@ class Api {
 
   getCards(token) {
     return fetch(`${this._url}/cards`, {
-      headers: {        
+      headers: {
         "Authorization" : `Bearer ${token}`
       }
     })
@@ -25,7 +25,7 @@ class Api {
 
   setUserInfo(data, token) {
     return fetch(`${this._url}/users/me`, {
-      method: 'PATCH',      
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         "Authorization" : `Bearer ${token}`
@@ -40,7 +40,7 @@ class Api {
 
   setNewAvatar(data, token) {
     return fetch(`${this._url}/users/me/avatar`, {
-      method: 'PATCH',      
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         "Authorization" : `Bearer ${token}`
@@ -54,7 +54,7 @@ class Api {
 
   addCard(data, token) {
     return fetch(`${this._url}/cards`, {
-      method: 'POST',      
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         "Authorization" : `Bearer ${token}`
@@ -62,7 +62,7 @@ class Api {
       body: JSON.stringify({
         name: data.place,
         link: data.link,
-      })
+    })
     })
     .then(this._serviceMethod)
   }
