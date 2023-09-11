@@ -6,12 +6,6 @@ const {
   getUsers, getUser, getUserById, editUserData, editUserAvatar,
 } = require('../controllers/users');
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 router.get('/', getUsers);
 router.get('/me', getUser);
 
