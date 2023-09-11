@@ -30,7 +30,7 @@ export default function ButtonLike({ likes, myid, cardid, card, onCardLike }) {
   return(
     <>
        <button type="button" className={`card__like-button ${isLike ? 'card__like-button_active' : ''}`} onClick={() => onCardLike(card)} />
-       <span className="card__counter" >{card.likes.length}</span>
+       <span className="card__counter" >{count}</span>
     </>
   )
 }
